@@ -1,8 +1,9 @@
-import {Inter} from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css";
 import Header from "@/components/Header";
+import { ClerkProvider } from "@clerk/nextjs";
 
-const inter = Inter({subsets:["latin"]})
+const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
   title: "Hi-Fin",
@@ -11,22 +12,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className}`}
-      >
-        {/* Header Section */}
-        <Header/>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${inter.className}`}
+        >
+          {/* Header Section */}
+          <Header />
 
-        <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen">{children}</main>
 
-        {/* Footer Section */}
-        <footer className="bg-blue-50 py-12">
-          <div className="container mx-auto">
+          {/* Footer Section */}
+          <footer className="bg-blue-50 py-12">
+            <div className="container mx-auto">
 
-          </div>
-        </footer>
-      </body>
-    </html>
+            </div>
+          </footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
