@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
           <Header />
 
           <main className="min-h-screen">{children}</main>
+          <Toaster richColors />
 
           {/* Footer Section */}
           <footer className="bg-blue-50 py-12">
@@ -50,10 +52,10 @@ export default function RootLayout({ children }) {
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-4">Quick Links</h4>
                   <ul className="space-y-2 text-sm">
-                    <li><a href="/dashboard" className="hover:text-blue-600">Dashboard</a></li>
-                    <li><a href="/about" className="hover:text-blue-600">About Us</a></li>
-                    <li><a href="/pricing" className="hover:text-blue-600">Pricing</a></li>
-                    <li><a href="/contact" className="hover:text-blue-600">Contact</a></li>
+                    <li><Link href="/dashboard" className="hover:text-blue-600">Dashboard</Link></li>
+                    <li><Link href="/about" className="hover:text-blue-600">About Us</Link></li>
+                    <li><Link href="/pricing" className="hover:text-blue-600">Pricing</Link></li>
+                    <li><Link href="/contact" className="hover:text-blue-600">Contact</Link></li>
                   </ul>
                 </div>
 
@@ -61,9 +63,9 @@ export default function RootLayout({ children }) {
                 <div>
                   <h4 className="font-semibold text-gray-900 mb-4">Connect</h4>
                   <div className="flex space-x-4">
-                    <a href="#" className="text-gray-500 hover:text-blue-600">Twitter</a>
-                    <a href="#" className="text-gray-500 hover:text-blue-600">LinkedIn</a>
-                    <a href="#" className="text-gray-500 hover:text-blue-600">Facebook</a>
+                    <Link href="#" className="text-gray-500 hover:text-blue-600">Twitter</Link>
+                    <Link href="#" className="text-gray-500 hover:text-blue-600">LinkedIn</Link>
+                    <Link href="#" className="text-gray-500 hover:text-blue-600">Facebook</Link>
                   </div>
                 </div>
               </div>
