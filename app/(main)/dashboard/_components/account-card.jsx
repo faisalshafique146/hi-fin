@@ -57,6 +57,7 @@ const AccountCard = ({ account }) => {
             checked={isDefault}
             onClick={handleDefaultChange}
             disabled={updateDefaultLoading}
+            className="cursor-pointer"
           />
         </CardHeader>
         <CardContent>
