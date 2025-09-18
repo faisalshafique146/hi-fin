@@ -383,7 +383,7 @@ const TransactionTable = ({ transactions }) => {
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent>
+                      <DropdownMenuContent align="start" side="left">
                         <DropdownMenuItem
                           onClick={() =>
                             router.push(
