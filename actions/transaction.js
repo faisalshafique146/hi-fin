@@ -6,6 +6,7 @@ import { request } from "@arcjet/next"
 import { auth } from "@clerk/nextjs/server"
 import { GoogleGenerativeAI } from "@google/generative-ai"
 import { revalidatePath } from "next/cache"
+import { Decimal } from "@prisma/client/runtime/library"
 
 const genAi = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
@@ -59,8 +60,11 @@ export async function createTransaction(data) {
             throw new Error("Account not found")
         }
 
-        const balanceChange = data.type === "EXPENSE" ? -data.amount : data.amount;;
-        const newBalance = account.balance.toNumber() + balanceChange;
+        const balanceChange = data.type === "EXPENSE"
+            ? new Decimal(data.amount).negated()
+            : new Decimal(data.amount)
+
+        const newBalance = account.balance.plus(balanceChange)
 
         const transaction = await db.$transaction(async (tx) => {
             const newTransaction = await tx.transaction.create({
