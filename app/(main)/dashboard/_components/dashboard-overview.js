@@ -24,7 +24,7 @@ const COLORS = [
   "#4ECDC4",
   "#45B7D1",
   "#96CEB4",
-  "#FFEEAD",
+  "#FFD700",
   "#D4A5A5",
   "#9FA8DA",
 ];
@@ -50,14 +50,14 @@ const DashboardOverview = ({ accounts, transactions }) => {
     );
   });
 
-  const expensesByCategory = currentMonthExpenses.reduce((acc, transaction) => {
-    const category = transaction.category;
-    if (!acc[category]) {
-      acc[category] = 0;
-    }
-    acc[category] += transaction.amount;
-    return acc;
-  }, {});
+ const expensesByCategory = currentMonthExpenses.reduce((acc, transaction) => {
+  const category = transaction.category;
+  if (!acc[category]) {
+    acc[category] = 0;
+  }
+  acc[category] += Number(transaction.amount); // ✅ force numeric
+  return acc;
+}, {});
 
   // Format data for pie chart
   const pieChartData = Object.entries(expensesByCategory).map(
