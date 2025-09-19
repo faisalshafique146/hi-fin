@@ -48,7 +48,9 @@ const Header = async () => {
 
           <SignedOut>
             <SignInButton forceRedirectUrl="/dashboard">
-              <Button variant="outline">Login</Button>
+              <Button className="bg-gradient-to-r from-indigo-600 via-indigo-700 to-purple-800 text-white font-medium px-6 py-2 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-200">
+                Login
+              </Button>
             </SignInButton>
           </SignedOut>
           <SignedIn>
