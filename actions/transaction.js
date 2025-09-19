@@ -60,10 +60,7 @@ export async function createTransaction(data) {
         }
 
         const balanceChange = data.type === "EXPENSE" ? -data.amount : data.amount;;
-        const round = (val) => Math.round(val * 100) / 100
-
-        const newBalance = round(account.balance.toNumber() + balanceChange)
-
+        const newBalance = account.balance.toNumber() + balanceChange;
 
         const transaction = await db.$transaction(async (tx) => {
             const newTransaction = await tx.transaction.create({
@@ -182,7 +179,7 @@ export async function getTransaction(id) {
     })
     if (!user) throw new Error("User not found")
 
-    const transaction = await db.transaction.findUnique({
+    const transaction = await db.transaction.findFirst({
         where: {
             id,
             userId: user.id,
