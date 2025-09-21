@@ -85,7 +85,7 @@ const AddTransactionForm = ({
   const onSubmit = async (data) => {
     const formData = {
       ...data,
-      amount: parseFloat(data.amount),
+      amount:  parseFloat(data.amount).toFixed(2),
     };
 
     if (editMode) {
